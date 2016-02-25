@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PAGE TITLE</title>
+    <meta name="description" content="PAGE DESCRIPTION" />
+    <meta name="keywords" content="PAGE KEYWORDS" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="jcomponent.js"></script>
+</head>
+<body>
+
+	<div><input type="text" data-component="" data-component-value="'@'" data-component-path="form.email #A" required="true" /></div>
+	<div>
+		<select data-component="" data-component-path="form.value #A" required="true" data-component-type="number">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="1">Again 1</option>
+			<option value="3">3</option>
+		</select>
+	</div>
+
+	<script>
+		var form = {};
+		form.value = 2;
+
+		MIDDLEWARE('A', function(next, value, path, type) {
+			console.log('MIDDLEWARE A', value, path);
+			if (typeof(value) === 'object') {
+				value.value = 3;
+				next();
+			} else
+				next('3');
+
+			// next('petersirka@gmail.com');
+		});
+
+	</script>
+
+</body>
+</html>
