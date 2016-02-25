@@ -11,6 +11,7 @@ COMPONENT('timer', function() {
         if (interval) {
             clearInterval(interval);
             interval = null;
+            SET("model.foka","RESET!")
             return;
         }
 
@@ -27,4 +28,16 @@ COMPONENT('timer', function() {
         if (self.element.attr('data-autorun') === 'true')
             toggle();
     };
+});
+
+COMPONENT('foka', function(){
+    var self = this;
+
+    self.validate = function(){
+        return false;
+    }
+
+    self.make = function(){
+        self.element.append('<input type="text" data-component-bind=""></input>');
+    }
 });
